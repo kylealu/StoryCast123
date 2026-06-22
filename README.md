@@ -1,54 +1,71 @@
-# StoryCast
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/71lPAhds)
+[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=24167662)
+# StoryCast Microsite Project
 
-A 3-page accessible microsite showcasing short audio and video travel stories.
+## Project Overview
+You will design and build a 3-page accessible microsite called StoryCast. The microsite will showcase audio and video storytelling in a semantically correct, research-driven design. The project emphasizes accessibility, semantic HTML, advanced CSS with Sass, and user-centered design practices.
 
-## Project structure
+You are required to:
+- Apply semantic HTML5 for structure and meaning.
+- Use Sass for styling.
+- Create responsive layouts with CSS Grid and Flexbox, including at least one container-queried component.
+- Ensure the site is accessible (WCAG AA standard), with transcripts, captions, or ARIA support where needed.
+- Provide a thoughtful information architecture and user journey before coding.
+- Ship without frameworks (Vanilla HTML, Sass/CSS, and JS if needed).
 
-```
-storycast/
-├── index.html              Home page — hero + featured story cards
-├── about.html               About / Access page — mission + accessibility approach
-├── story/
-│   └── index.html           Story detail page — media, transcript, related stories
-├── sass/
-│   ├── _colors.scss         Color tokens
-│   ├── _typography.scss     Font tokens
-│   ├── _spacing.scss        Spacing tokens
-│   └── main.scss            Main stylesheet (cascade layers, layout, BEM components)
-├── css/
-│   └── main.css             Compiled output — do not edit directly
-├── assets/
-│   ├── video/                Video story files
-│   ├── audio/                Audio story files
-│   └── transcripts/          .vtt caption files + plain-text transcripts
-└── README.md
-```
+---
 
-## How to run locally
+## Deliverables
 
-1. No build step is required to view the site — open `index.html` directly in a browser, or use a tool like VS Code's "Live Server" extension for the best experience (handles relative paths correctly).
-2. To edit styles, install Sass and watch the source files:
-   ```
-   npm install -g sass
-   sass --watch sass/main.scss css/main.css
-   ```
-   Leave this running while you edit any `.scss` file — it will recompile `css/main.css` automatically.
+### 1. Research & Planning
+   **Information Architecture (IA):**
+   - Sitemap (showing 3 pages and how they connect).
 
-## Accessibility checklist
+   ** High-fidelity mockups:**
+   - Digital mockups of the 3 pages showing content layout using Figma.
 
-- [x] Semantic HTML5 structure on every page (`<header>`, `<main>`, `<nav>`, `<article>`, `<figure>`, `<section>`, `<footer>`)
-- [x] Logical heading hierarchy (single `<h1>` per page, nested `<h2>`/`<h3>` beneath it)
-- [x] Skip-to-content link on every page for keyboard users
-- [x] Visible focus outlines on all interactive elements (`:focus-visible`)
-- [x] Video includes a `<track kind="captions">` pointing to a `.vtt` file
-- [x] Audio and video stories both include a full text transcript, visible in the page (not hidden behind a download)
-- [x] Color palette checked for WCAG AA contrast (4.5:1 minimum for body text)
-- [x] All images include descriptive `alt` text
-- [x] Site is fully operable via keyboard alone (Tab through all nav, links, and the `<details>` transcript toggle)
-- [x] Container query implemented on the story card component — cards switch from stacked to side-by-side layout based on their own container width, independent of the viewport
 
-## Design notes
+### 2. Design & Development
+   **HTML Structure:**
+   - Semantic elements (`<header>`, `<main>`, `<article>`, `<section>`, `<figure>`, `<nav>`, etc.).
+   - Accessible media (`<video>`, `<audio>`, `<track>` for captions, `<figcaption>` for descriptions).
 
-- **Sass architecture**: organized using `@layer` (reset, base, layout, components, utilities) to control cascade order predictably, with BEM naming (`.story-card__title`, `.story-card__link--active`, etc.) for all components.
-- **Responsive strategy**: CSS Grid for page-level layout (the featured story grid), Flexbox for component-level layout (header, footer, card internals), and one container query on `.story-card` for component-level responsiveness independent of the viewport.
-- **Theme**: Travel storytelling — chosen as a simple, visual subject that naturally supports both video (scenery, motion) and audio (ambient sound) story formats.
+   **Styling with Sass:**
+   - Use Sass partials and tokens (`_colors.scss`, `_typography.scss`, `_spacing.scss`).
+   - Deliver a responsive design with Grid + Flexbox.
+   - Include container queries that adapt to component layouts (e.g., a media card that changes when its container shrinks).
+
+   **Accessibility Considerations:**
+   - Provide transcripts or captions for all audio/video.
+   - Ensure contrast ratios meet WCAG 2.1 AA.
+   - Include keyboard navigation support and visible focus states.
+   - Use ARIA attributes where semantic HTML alone is insufficient.
+
+
+### 3. Pages Required
+   - **Home Page** – Introduces StoryCast, highlights featured audio/video stories, provides clear navigation.
+   - **Story Page (Detail)** – Dedicated page for a single story with embedded media, transcript, and related stories.
+   - **About / Access Page** – Explains the mission of StoryCast, accessibility features, and how users can engage with content.
+
+---
+
+## Submission Package
+
+   **Research Document (PDF)**
+   - Sitemap (Diagram)
+   - High-fidelity mockups (Link)
+
+   **Code Repository (GitHub)**
+   - `/index.html`, `/story.html`, `/about.html`
+   - `/sass` folder with partials, tokens, and `main.scss`
+   - `/css` compiled styles
+   - `/assets` for media & transcripts
+   - Documentation pdf file
+
+   **README.md**
+   - Overview of project structure
+   - Accessibility checklist (how you met requirements)
+   - Instructions for running locally
+
+   **Tools:**  
+   - No frameworks (just HTML, Sass, vanilla CSS/JS if necessary).
