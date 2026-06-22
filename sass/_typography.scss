@@ -1,0 +1,18 @@
+// _typography.scss
+// Typography tokens for StoryCast
+
+$font-primary: 'Georgia', 'Times New Roman', serif;       // headings — editorial/storytelling feel
+$font-secondary: 'Helvetica Neue', Arial, sans-serif;      // body text — clean and readable
+
+$font-size-base: 1rem;        // 16px
+$font-size-sm: 0.875rem;      // 14px
+$font-size-lg: 1.25rem;       // 20px
+$font-size-xl: 1.75rem;       // 28px
+$font-size-2xl: 2.5rem;       // 40px — hero headings
+
+$line-height-tight: 1.2;
+$line-height-base: 1.6;
+$line-height-loose: 1.8;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;

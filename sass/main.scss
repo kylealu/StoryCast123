@@ -1,0 +1,286 @@
+// main.scss
+// StoryCast — main stylesheet
+// Architecture: cascade layers (reset -> base -> layout -> components -> utilities)
+// Naming convention: BEM (.block__element--modifier)
+
+@use 'colors' as *;
+@use 'typography' as *;
+@use 'spacing' as *;
+
+@layer reset, base, layout, components, utilities;
+
+// ---------------------------------
+// RESET
+// ---------------------------------
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body, h1, h2, h3, p, figure {
+    margin: 0;
+  }
+
+  img, video {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+// ---------------------------------
+// BASE
+// ---------------------------------
+@layer base {
+  body {
+    font-family: $font-secondary;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $color-text;
+    background: $color-background;
+  }
+
+  h1, h2, h3 {
+    font-family: $font-primary;
+    line-height: $line-height-tight;
+  }
+
+  h1 { font-size: $font-size-2xl; }
+  h2 { font-size: $font-size-xl; }
+  h3 { font-size: $font-size-lg; }
+
+  // Accessible focus state — visible on every interactive element
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid $color-focus;
+    outline-offset: 2px;
+  }
+
+  // Skip link — visually hidden until focused
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: $color-primary;
+    color: white;
+    padding: $space-sm $space-md;
+    z-index: 100;
+
+    &:focus {
+      left: $space-md;
+      top: $space-md;
+    }
+  }
+}
+
+// ---------------------------------
+// LAYOUT
+// ---------------------------------
+@layer layout {
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $space-md $space-lg;
+    background: $color-primary;
+    color: white;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: $space-lg;
+
+    a {
+      color: white;
+      font-weight: $font-weight-bold;
+    }
+
+    a:hover {
+      color: $color-accent;
+    }
+  }
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $space-lg;
+  }
+
+  .hero {
+    padding: $space-2xl $space-lg;
+    text-align: center;
+    background: $color-surface;
+    border-bottom: 1px solid $color-border;
+  }
+
+  // CSS Grid for the featured stories layout
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: $space-lg;
+    padding: $space-xl $space-lg;
+  }
+
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: $space-md;
+    padding: $space-lg;
+    background: $color-primary;
+    color: white;
+    margin-top: $space-2xl;
+  }
+}
+
+// ---------------------------------
+// COMPONENTS (BEM)
+// ---------------------------------
+@layer components {
+
+  // ===== Story Card =====
+  // This is the container-queried component.
+  // Each .story-card establishes its own containment context,
+  // so its internal layout responds to the CARD's width,
+  // not the viewport width.
+  .story-card {
+    container-type: inline-size;
+    container-name: card;
+
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-base;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .story-card__figure {
+    margin: 0;
+  }
+
+  .story-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .story-card__body {
+    padding: $space-md;
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    flex: 1;
+  }
+
+  .story-card__title {
+    font-size: $font-size-lg;
+  }
+
+  .story-card__description {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    flex: 1;
+  }
+
+  .story-card__link {
+    color: $color-accent;
+    font-weight: $font-weight-bold;
+    align-self: flex-start;
+  }
+
+  .story-card__link:hover {
+    text-decoration: underline;
+  }
+
+  // Container query: when the CARD itself has room (not the viewport),
+  // switch from stacked to a side-by-side row layout.
+  @container card (min-width: 400px) {
+    .story-card {
+      flex-direction: row;
+    }
+
+    .story-card__figure {
+      width: 40%;
+      flex-shrink: 0;
+    }
+
+    .story-card__image {
+      height: 100%;
+      aspect-ratio: auto;
+    }
+
+    .story-card__body {
+      width: 60%;
+    }
+  }
+
+  // ===== Media Player block (story detail page) =====
+  .media-player {
+    width: 100%;
+    margin-bottom: $space-md;
+  }
+
+  .media-player__caption {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    padding: $space-sm 0;
+  }
+
+  // ===== Transcript block =====
+  .transcript {
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-base;
+    padding: $space-md;
+    margin: $space-lg 0;
+  }
+
+  .transcript__summary {
+    font-weight: $font-weight-bold;
+    cursor: pointer;
+    padding: $space-sm 0;
+  }
+
+  .transcript__text {
+    line-height: $line-height-loose;
+    margin-top: $space-sm;
+  }
+}
+
+// ---------------------------------
+// UTILITIES
+// ---------------------------------
+@layer utilities {
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .text-center { text-align: center; }
+}
+
+// ---------------------------------
+// RESPONSIVE (viewport-level breakpoints)
+// ---------------------------------
+@layer layout {
+  @media (max-width: 600px) {
+    .site-header {
+      flex-direction: column;
+      gap: $space-sm;
+    }
+
+    .hero {
+      padding: $space-xl $space-md;
+    }
+  }
+}

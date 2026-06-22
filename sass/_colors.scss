@@ -1,0 +1,13 @@
+// _colors.scss
+// Color tokens for StoryCast
+// Contrast checked against WCAG AA (4.5:1 minimum for body text)
+
+$color-primary: #1d4e4a;        // deep teal — used for headers, nav, key actions
+$color-primary-light: #2e7d76;  // hover/active state for primary
+$color-accent: #d97642;         // warm terracotta — used sparingly for CTAs/links
+$color-background: #faf8f4;     // warm off-white page background
+$color-surface: #ffffff;        // card backgrounds
+$color-text: #1f1f1f;           // near-black, body text (high contrast on background)
+$color-text-muted: #5a5a5a;     // secondary text, still meets 4.5:1 on white
+$color-border: #e0ddd5;         // subtle dividers/borders
+$color-focus: #1a73e8;          // visible focus outline color (high contrast, distinct from theme)
